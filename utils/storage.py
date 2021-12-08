@@ -2,6 +2,8 @@
 Simple extension to a dictionary to access keys with a '.key' syntax instead of a ['key'] syntax.
 """
 from __future__ import annotations
+
+import os
 import typing
 
 
@@ -37,9 +39,13 @@ class DotDict(dict):
             new[k] = v.copy() if isinstance(v, DotDict) else v
         return new
 
-    def to_json(self, file: str) -> None:
+    def to_json(self, directory_name: str, model_run_name: str) -> None:
         """ Dump data as a JSON to the specified file """
         import json
+        file = f'{directory_name}/{model_run_name}.json'
+
+        os.makedirs(directory_name, exist_ok=True)
+
         with open(file, 'w') as f:
             json.dump(self, f)
 

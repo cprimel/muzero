@@ -6,7 +6,7 @@ import sys
 
 from keras.layers import Dense, Input, Concatenate, Reshape, Flatten, BatchNormalization, Conv2D, Lambda
 from keras.models import Model
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 
 from utils.network_utils import Crafter, MinMaxScaler
 

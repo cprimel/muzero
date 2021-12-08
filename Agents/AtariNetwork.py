@@ -8,7 +8,7 @@ import sys
 from keras.models import Model
 from keras.layers import Input, Reshape, Activation, Dense, Conv2D, \
     AveragePooling2D, BatchNormalization, Concatenate, Flatten
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 
 from utils.network_utils import MinMaxScaler, Crafter
 

@@ -80,7 +80,7 @@ def learnM0(g, m0_content: DotDict, m0_run_name: str) -> None:
         print("Load trainExamples from file")
         net.load_checkpoint(alg_args.load_folder_file[0], alg_args.load_folder_file[1])
 
-    m0_content.to_json(f'{alg_args.checkpoint}/{m0_run_name}.json')
+    m0_content.to_json(alg_args.checkpoint, m0_run_name)
 
     c = MuZeroCoach(g, net, alg_args, m0_run_name)
     c.learn()
