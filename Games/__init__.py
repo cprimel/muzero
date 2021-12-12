@@ -7,6 +7,7 @@ from .gym.GymGame import GymGame
 from .gym.ImageGymGame import ImageGymGame
 from .hex.HexGame import HexGame
 from .tictactoe.TicTacToeGame import TicTacToeGame
+from .blackjack.BlackjackGame import BlackjackGame
 
 
 # Add different environments by adding a full capital key and a Game implementation class reference.
@@ -15,5 +16,6 @@ Games = {
     "GYM": GymGame,
     "ATARI": AtariGame,
     "IMAGEGYM": ImageGymGame,
-    "TICTACTOE": TicTacToeGame
+    "TICTACTOE": TicTacToeGame,
+    "BLACKJACK": BlackjackGame,
 }

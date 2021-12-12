@@ -1,0 +1,30 @@
+{
+  "name": "Blackjack_MuZeroVsRandom",
+  "experiment": "TOURNEY",
+  "output_dir": "Results",
+
+  "num_repeat": 3,
+  "num_trials": 10,
+  "checkpoint_resolution": 1,
+  "num_opponents": null,
+  "return_data": true,
+
+
+  "environment": {
+    "name": "BLACKJACK",
+    "args": {
+      "n": 2
+    }
+  },
+
+  "players": [
+    {
+      "name": "MUZERO",
+      "config": "Configurations/ModelConfigs/MuzeroBlackjack.json"
+    },
+    {
+      "name": "RANDOM",
+      "config": null
+    }
+  ]
+}

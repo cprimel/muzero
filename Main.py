@@ -24,6 +24,7 @@ from Games.tictactoe.TicTacToeGame import TicTacToeGame
 from Games.othello.OthelloGame import OthelloGame
 from Games.gym.GymGame import GymGame
 from Games.atari.AtariGame import AtariGame
+from Games.blackjack.BlackjackGame import BlackjackGame
 
 import Experimenter
 import Agents
@@ -103,6 +104,9 @@ def game_from_name(name: str):
     if match_name == "hex":
         return HexGame(BOARD_SIZE)
 
+    elif match_name == "blackjack":
+        return BlackjackGame(2)
+
     elif match_name == "tictactoe":
         return TicTacToeGame(BOARD_SIZE)
 
@@ -154,6 +158,7 @@ if __name__ == "__main__":
     for p in [train_parser, play_parser]:
         p.add_argument("--game", default="gym")
         p.add_argument("--boardsize", "-s", type=int, default=6, help="Board size (if relevant)")
+        p.add_argument("--num_decks", "-d", type=int, default=2, help="Number of decks (if relevant)")
 
     # Common arguments
     for p in [experiment_parser, train_parser]:
@@ -187,6 +192,7 @@ if __name__ == "__main__":
             content.recursive_update(override)
 
         BOARD_SIZE = args.boardsize
+        NUM_DECKS = args.num_decks
         game = game_from_name(args.game)
         run_name = args.run_name if args.run_name else get_run_name(content.name, content.architecture, args.game)
 
@@ -212,6 +218,7 @@ if __name__ == "__main__":
 
     elif args.mode == "play":
         BOARD_SIZE = args.boardsize
+        NUM_DECKS = args.num_decks
         game = game_from_name(args.game)
 
         if args.p1.upper() not in Agents.Players:
