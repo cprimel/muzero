@@ -110,7 +110,7 @@ def perform_tournament(experiment: ExperimentConfig, by_checkpoint: bool = True)
         'results': results,
         'args': experiment.experiment_args
     })
-    data.to_json(experiment.output_directory + f'{experiment.name}_{dt}.json')
+    data.to_json(experiment.output_directory, f'{experiment.name}_{dt}')
 
     if trajectories:
         with open(experiment.output_directory + f'{experiment.name}_{dt}.out', 'wb') as f:
