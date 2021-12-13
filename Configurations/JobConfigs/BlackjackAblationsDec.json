@@ -1,0 +1,35 @@
+{
+  "name": "BlackjackAblationAnalysis",
+  "experiment": "TRAIN_GRID",
+  "output_dir": "Results/Blackjack_ablationDec",
+
+  "num_repeat": 10,
+  "n_jobs": 8,
+  "flags": "--game blackjack",
+
+  "environment": {
+    "name": "BLACKJACK",
+    "console": "--game blackjack",
+    "args": {
+      "n": 2
+    }
+  },
+
+  "ablations": {
+    "base": {
+      "name": "MUZERO",
+      "config": "Configurations/ModelConfigs/MuzeroBlackjack.json"
+    },
+
+    "content": {
+      "args": {
+        "latent_decoder": [true]
+      },
+
+      "net_args": {
+        "latent_depth": [4, 8],
+        "dynamics_penalty": [1]
+      }
+    }
+  }
+}
