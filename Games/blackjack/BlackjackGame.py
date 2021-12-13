@@ -121,7 +121,8 @@ class BlackjackGame(Game):
     def getInitialState(self) -> GameState:
 
         t = BlackjackTable(num_decks=self.num_decks)
-
+        self.bet_multiplier = 1
+        self.phase = -1
         t.dealer_hand.append(t.deal_card())
         t.player_hand.append(t.deal_card())
         t.hole_card = t.deal_card()
@@ -162,8 +163,8 @@ class BlackjackGame(Game):
             state.done = True
 
         # Debugging
-        # t.print()
-        # print(f"Action Chosen: {state.action}")
+        t.print()
+        print(f"Action Chosen: {state.action}")
 
         next_state = GameState(canonical_state=(t.dealer_hand, t.player_hand, t.deck, t.hole_card), observation=None,
                                action=action,
