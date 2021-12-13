@@ -51,7 +51,7 @@ class AblationAnalysis:
         # Save ablation analysis configuration using time annotation.
         dt = datetime.now().strftime("%Y%m%d-%H%M%S")
         schedule = DotDict({i: self.experiment.ablation_grid[i] for i in range(len(self.experiment.ablation_grid))})
-        schedule.to_json(os.path.join(self.experiment.output_directory, f'ablation_schedule_{dt}.json'))
+        schedule.to_json(self.experiment.output_directory, f'ablation_schedule_{dt}')
 
         # Store/ generate all unique JSON config files annotated by time and repetition number.
         for run in range(self.experiment.experiment_args.num_repeat):
@@ -69,7 +69,7 @@ class AblationAnalysis:
                     os.makedirs(c.args.checkpoint)
 
                 config_file = os.path.join(self.config_dir, run_config_name) + '.json'
-                c.to_json(config_file)
+                c.to_json(self.config_dir, run_config_name)
 
                 self.files.append(config_file)
 

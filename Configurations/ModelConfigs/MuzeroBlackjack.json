@@ -4,7 +4,7 @@
   "architecture": "Gym",
 
   "args": {
-    "num_selfplay_iterations": 500,
+    "num_selfplay_iterations": 1000,
     "num_episodes": 20,
     "num_gradient_steps": 40,
     "max_episode_moves": 500,
@@ -44,7 +44,7 @@
   "net_args": {
     "optimizer": {
       "method": "adam",
-      "lr_init": 0.02,
+      "lr_init": 0.03,
       "momentum": 0.9
     },
     "l2": 1e-4,
@@ -58,7 +58,7 @@
     "num_dense": 2,
     "size_dense": 32,
     "activation": "elu",
-    "support_size": 15,
+    "support_size": 10,
     "observation_length": 1
   }
 }

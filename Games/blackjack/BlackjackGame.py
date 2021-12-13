@@ -31,6 +31,9 @@ class Card:
         self.face = face
         self.value = self.values[face]
 
+    def __eq__(self, other):
+        return self.face == other
+
     def __str__(self):
         return self.face
 
@@ -135,7 +138,7 @@ class BlackjackGame(Game):
         return next_state
 
     def getDimensions(self) -> typing.Tuple[int, int, int]:
-        return 3, 3, 3
+        return 3, 13, 13
 
     def getActionSize(self) -> int:
         return 4 if self.phase < 0 else 2
@@ -163,8 +166,8 @@ class BlackjackGame(Game):
             state.done = True
 
         # Debugging
-        t.print()
-        print(f"Action Chosen: {state.action}")
+        # t.print()
+        # print(f"Action Chosen: {state.action}")
 
         next_state = GameState(canonical_state=(t.dealer_hand, t.player_hand, t.deck, t.hole_card), observation=None,
                                action=action,
@@ -209,10 +212,19 @@ class BlackjackGame(Game):
         t = BlackjackTable(self.num_decks)
         (t.dealer_hand, t.player_hand, _, _) = state.canonical_state
 
+        player_hand_expanded = np.zeros(13)
+        dealer_hand_expanded = np.zeros(13)
+        for idx, (face, _) in enumerate(t.deck.items()):
+            for card in t.player_hand:
+                if card == face:
+                    player_hand_expanded[idx] += 1
+            if t.dealer_hand[0] == face:
+                dealer_hand_expanded[idx] += 1
+
         return np.array([
-            np.full((3, 3), t.get_hand_value(t.player_hand)),
-            np.full((3, 3), t.get_hand_value([t.dealer_hand[0]])),
-            np.full((3, 3), self.phase)
+            np.full((13, 13), player_hand_expanded),
+            np.full((13, 13), dealer_hand_expanded),
+            np.full((13, 13), 0)
         ])
 
     def getSymmetries(self, state: GameState, pi: np.ndarray) -> typing.List:
