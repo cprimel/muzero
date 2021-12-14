@@ -3,7 +3,7 @@
   "experiment": "TOURNEY",
   "output_dir": "Results",
 
-  "num_repeat": 3,
+  "num_repeat": 20,
   "num_trials": 50,
   "checkpoint_resolution": 1,
   "num_opponents": null,
